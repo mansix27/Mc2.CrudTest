@@ -1,0 +1,71 @@
+﻿@page "/customerForm"
+@page "/customerForm/{id:int}"
+<h3>CustomerForm</h3>
+@if (Id == null)
+{
+    <pageTitle>
+        create new customer
+    </pageTitle>
+}
+else
+{
+    <pageTitle>
+      Edit customer
+    </pageTitle>
+}
+
+<EditForm Model="customerDto" OnInvalidSubmit="OnSaveSubmitClick" class="row p-3">
+
+    <div class="col-md-6 mb-3">
+        <label  for="firstName">FirstName</label>
+        <InputText id="firstName" @bind-Value="customerDto.FirstName" class="form-control"></InputText>
+    </div>
+     <div class="col-md-6 mb-3">
+        <label for="lastName">LastName</label>
+        <InputText id="lastName" @bind-Value="customerDto.LastName" class="form-control" ></InputText>
+
+    </div>
+    
+    <div class="col-md-6 mb-3">
+        <label for="country">Country</label>
+        <select id="country" class="form-control" @bind="customerDto.CountryCode">
+            <option value="">--Select--</option>
+            @foreach (var item in region)
+            {
+                <option value="@item"> @item </option>
+            }
+        </select>
+    </div>
+    <div class="col-md-6 mb-3">
+        <label for="phoneNumber">PhoneNumber</label>
+        <InputText id="phoneNumber" @bind-Value="customerDto.PhoneNumber" class="form-control"></InputText>
+      
+    </div>
+    <div class="col-md-6 mb-3">
+        <label for="bankAccount">BankAccount</label>
+        <InputText id="bankAccount" @bind-Value="customerDto.BankAccountNumber" class="form-control"></InputText>
+
+    </div>
+    <div class="col-md-6 mb-3">
+        <label for="Birt">Birth</label>
+        <InputText id="Birt" @bind-Value="customerDto.DateOfBirth" class="form-control"></InputText>
+
+    </div>
+    <div class="col-md-6 mb-3">
+        <label for="email">Email</label>
+        <InputText id="email" @bind-Value="customerDto.Email" class="form-control"></InputText>
+
+    </div>
+    <div>
+        <button type="submit" class="btn btn-primary" @onclick="OnSaveSubmitClick" >@btnTxt</button>
+
+    </div>
+    
+</EditForm>
+
+<div>
+    <lable class="label label-info">@warninngMessage</lable>
+</div>
+
+
+

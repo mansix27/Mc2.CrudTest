@@ -1,0 +1,44 @@
+﻿@page "/customerList"
+
+<h3>CustomerList</h3>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>FirstName</th>
+            <th>LastName</th>
+            <th>DateOfBirth</th>
+            <th>PhoneNumber</th>
+            <th>Email</th>
+            <th>BankAccountNumber</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var customer in customerDtoList)
+        {
+            <tr>
+                <td>@customer.FirstName</td>
+                <td>@customer.LastName</td>
+                <td>@customer.DateOfBirth</td>
+                <td>@customer.PhoneNumber</td>
+                <td>@customer.Email</td>
+                <td>@customer.BankAccountNumber</td>
+               
+                <td>
+
+                  <a @onclick="() => OnEditClick(customer)" class="btn btn-primary">
+                        Edit
+                    </a>
+                    <a @onclick="() => OnDeleteClick(customer)" class="btn btn-danger">
+                        Delete
+                    </a>
+                 </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<button type="button" class="btn btn-primary" @onclick="CreateCustomer">Create New</button>
+ <div>
+    <lable class="label label-info">@warninngMessage</lable>
+ </div>
